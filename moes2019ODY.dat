@@ -1,0 +1,17 @@
+let Buildings := Buildings union {'ODY'};								# Add "Building1" to set of Buildings
+let LowTempBuildings := LowTempBuildings union {'ODY'}; 		# Decide if it belongs to Medium or Low Temperature Buildings
+
+###########BUILDING SPECIFIC PARAMETER  Time  Independend ##########################
+
+let FloorArea['ODY'] := 4092;
+let k_th['ODY']:= 0.00659;												# ATTENTION unit in kW
+let k_sun['ODY']:= 0.07;
+let specQ_people['ODY']:= 0.0022712;										# ATTENTION unit in kW
+
+###########BUILDING SPECIFIC PARAMETER  Time  Dependend ##########################
+let specElec['ODY','A1'] := 0.0065;	
+let specElec['ODY','A2'] := 0.0065;
+let specElec['ODY','A3'] := 0.0065;
+let specElec['ODY','A4'] := 0.0065;
+let specElec['ODY','Extreme'] := 0.0082;								# ATTENTION unit in kW
+let specElec['ODY','B'] := 0.0014;										# ATTENTION unit in kW

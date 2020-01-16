@@ -1,0 +1,169 @@
+/*---------------------------------------------------------------------------------------------------------------------------------------
+Course: Modelling and optimisation of energy systems course spring semester 2018
+EPFL Campus energ system optimization
+IPESE, EPFL
+---------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------------------------------------------------
+This is a data file which will contains the informations on sets and parameters. Depending on the modifications and additions to the 
+model, the data file is  subject to change.
+---------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------------------------------------------------
+Sets
+---------------------------------------------------------------------------------------------------------------------------------------*/
+set Time := 															# set for defining the time steps
+A1
+A2
+A3
+A4
+B
+Extreme	
+;
+
+set Technologies := 													# set of technologies
+Boiler 
+PV 
+SOFC
+Geothermal
+HP2stage
+HP1stageLT
+HP1stageMT
+Cogen
+HPDatacenter
+HPWaste
+;			
+
+set Grids :=															# set of grid units
+ElecGridBuy 
+ElecGridSell 
+NatGasGrid 
+;	
+
+set Layers :=															# set of layers (resources)
+Natgas
+Electricity
+Biogas
+;	
+
+set HeatingLevel :=														# set of heating levels
+LowT 
+MediumT
+;										
+
+set UtilityType :=														# set of utility type
+Heating 
+ElectricitySup 
+ElectricityCons
+;
+
+set UtilitiesOfType[Heating] :=											# set to assign utilities to utility type
+Boiler
+SOFC
+Geothermal
+HP2stage
+HP1stageLT
+HP1stageMT
+Cogen
+HPDatacenter
+HPWaste
+;
+
+set UtilitiesOfType[ElectricitySup] :=
+PV
+SOFC
+Geothermal
+Cogen
+ElecGridBuy
+;
+
+set UtilitiesOfType[ElectricityCons] :=
+HP2stage
+HP1stageLT
+HP1stageMT
+HPDatacenter
+HPWaste
+ElecGridSell
+;
+
+set UtilitiesOfLayer[Electricity] := 
+PV 
+SOFC
+Geothermal
+HP2stage
+HP1stageLT
+HP1stageMT
+Cogen
+HPDatacenter
+HPWaste
+ElecGridBuy 
+ElecGridSell 
+;
+
+set UtilitiesOfLayer[Natgas] :=
+Boiler 
+Cogen
+NatGasGrid 
+;
+
+set UtilitiesOfLayer[Biogas] :=
+SOFC
+;
+
+/*---------------------------------------------------------------------------------------------------------------------------------------
+Generic Parameters
+---------------------------------------------------------------------------------------------------------------------------------------*/
+param top :=															# operating time of each time step
+A1			473
+A2			693
+A3			535
+A4			543
+B			6515
+Extreme 	1
+;
+
+param Theating :=														# temperature of heating demand
+MediumT 65
+LowT 50
+;
+
+/*---------------------------------------------------------------------------------------------------------------------------------------
+ Weather parameters
+---------------------------------------------------------------------------------------------------------------------------------------*/
+param Text := 															# external temperature [C]
+A1 			0.15
+A2 			6.62
+A3 			10.99
+A4 			12.56
+B 			16
+Extreme		-9
+;
+
+param irradiation :=													# irradiation at each time step ATTENTION --> [kW/m2] 
+A1			0.067
+A2			0.057
+A3			0.404
+A4			0.088  
+B			0.097
+Extreme		0
+;
+
+/*---------------------------------------------------------------------------------------------------------------------------------------
+Utility paremeters
+---------------------------------------------------------------------------------------------------------------------------------------*/
+param Tminheating :=													# minimum temperature of the heating technologies
+Boiler A1 120
+Boiler A2 120
+Boiler A3 120
+Boiler A4 120
+Boiler Extreme 120
+Boiler B 120
+;
+
+param c_spec :=															# specific cost of resources
+NatGasGrid 0.0303
+ElecGridBuy 0.0916
+ElecGridSell -0.06
+;
+
+end;
